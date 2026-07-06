@@ -1,0 +1,134 @@
+---
+import '@fontsource-variable/fraunces/opsz.css';
+import '@fontsource-variable/fraunces/opsz-italic.css';
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  /** JSON-LD adicional de la página (p. ej. FAQPage) */
+  schema?: object;
+}
+const { title, description, schema } = Astro.props;
+
+const nav = [
+  { href: '/eventos-empresa/', label: 'Empresas' },
+  { href: '/bodas/', label: 'Bodas' },
+  { href: '/eventos-privados/', label: 'Eventos privados' },
+  { href: '/formacion/', label: 'Formación' },
+  { href: '/precios/', label: 'Precios' },
+  { href: '/sobre-alejandro/', label: 'Sobre Alejandro' },
+];
+
+// Entidades base del negocio — datos verificados en memory/user_alejandro-furnadjiev.md
+const baseSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': '#alejandro',
+      name: 'Alejandro Furnadjiev',
+      jobTitle: 'Mago profesional',
+      description:
+        'Mago profesional especializado en cartomagia y magia de cerca. Discípulo de Arturo de Ascanio y Juan Tamariz. Gran Premio de Cartomagia FLASOMA 2004 y Memorial Ascanio 2006.',
+      award: [
+        'Primer premio de Cartomagia, Congreso Nacional de España (Almería, 1999)',
+        'Gran Premio de Cartomagia, FLASOMA 2004 (Buenos Aires)',
+        'Memorial Ascanio 2006 — Mejor mago del año',
+      ],
+    },
+    {
+      '@type': 'LocalBusiness',
+      name: 'Alejandro Furnadjiev — Mago para eventos',
+      description,
+      areaServed: { '@type': 'City', name: 'Madrid' },
+      founder: { '@id': '#alejandro' },
+      // [PENDIENTE: url, telephone y email cuando el cliente los confirme]
+    },
+  ],
+};
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(baseSchema)} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <header>
+      <div class="container header-inner">
+        <a class="brand" href="/">Alejandro Furnadjiev</a>
+        <nav aria-label="Principal">
+          {nav.map((item) => (
+            <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))}
+          <a class="btn btn-primary nav-cta" href="/contacto/">Pide presupuesto</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <hr class="divider" />
+      <div class="container footer-inner">
+        <p>
+          <strong>Alejandro Furnadjiev</strong> · Mago para eventos en Madrid<br />
+          <span class="muted">Magia de cerca y espectáculos para empresas, bodas y celebraciones privadas.</span>
+        </p>
+        <p class="pendiente">[PENDIENTE: teléfono, email y redes sociales confirmados por el cliente]</p>
+        <p class="muted">© {new Date().getFullYear()} Alejandro Furnadjiev</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: var(--s-3) 0;
+  }
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+  .brand {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3);
+  }
+  nav a:not(.btn) {
+    color: var(--muted);
+    text-decoration: none;
+    padding: var(--s-2) 0;
+  }
+  nav a[aria-current='page'],
+  nav a:not(.btn):hover { color: var(--text); }
+  .nav-cta { padding: 10px 20px; }
+  footer { margin-top: var(--s-7); }
+  .footer-inner { padding: var(--s-5) var(--s-3); }
+</style>

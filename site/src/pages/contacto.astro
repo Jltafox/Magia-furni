@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Contacto y presupuesto | Alejandro Furnadjiev"
+  description="Pide presupuesto sin compromiso para tu evento en Madrid: empresa, boda o fiesta privada. Respuesta rápida y propuesta a medida."
+>
+  <section class="container" style="padding-top: var(--s-7);">
+    <h1>Pide presupuesto sin compromiso</h1>
+    <p class="muted" style="max-width: 52ch;">
+      Cuéntame qué evento preparas y te respondo con una propuesta a medida: formato, duración y precio
+      cerrado.
+    </p>
+
+    <div class="grid">
+      <!-- [PENDIENTE: conectar el formulario a un backend (Formspree/Netlify Forms) en el deploy] -->
+      <form method="post" action="#">
+        <label for="name">Nombre</label>
+        <input id="name" name="name" type="text" required autocomplete="name" />
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required autocomplete="email" />
+
+        <label for="phone">Teléfono (opcional)</label>
+        <input id="phone" name="phone" type="tel" autocomplete="tel" />
+
+        <label for="type">Tipo de evento</label>
+        <select id="type" name="type" required>
+          <option value="">Elige una opción</option>
+          <option value="empresa">Evento de empresa</option>
+          <option value="boda">Boda</option>
+          <option value="privado">Fiesta privada / cumpleaños de adultos</option>
+          <option value="otro">Otro</option>
+        </select>
+
+        <label for="date">Fecha del evento (si la sabes)</label>
+        <input id="date" name="date" type="date" />
+
+        <label for="message">Cuéntame tu evento</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button class="btn btn-primary" type="submit">Enviar solicitud</button>
+      </form>
+
+      <aside>
+        <div class="card">
+          <h3>Contacto directo</h3>
+          <p class="pendiente">[PENDIENTE: teléfono / WhatsApp del cliente]</p>
+          <p class="pendiente">[PENDIENTE: email de contacto del cliente]</p>
+          <p class="muted">Zona de actuación: Madrid y Comunidad de Madrid.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--s-5);
+    grid-template-columns: 1fr;
+    margin-top: var(--s-5);
+  }
+  @media (min-width: 721px) {
+    .grid { grid-template-columns: 3fr 2fr; }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PressBar from '../components/PressBar.astro';
+import Placeholder from '../components/Placeholder.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+
+const services = [
+  {
+    href: '/eventos-empresa/',
+    title: 'Eventos de empresa',
+    text: 'Cenas, congresos y presentaciones que el equipo recuerda mucho después del lunes.',
+  },
+  {
+    href: '/bodas/',
+    title: 'Bodas',
+    text: 'Asombro entre invitados durante el cóctel o la sobremesa. Elegante y discreto.',
+  },
+  {
+    href: '/eventos-privados/',
+    title: 'Eventos privados',
+    text: 'Cumpleaños de adultos, aniversarios y fiestas con un premio internacional en tu salón.',
+  },
+  {
+    href: '/formacion/',
+    title: 'Formación',
+    text: 'Clases y talleres de magia para adultos con un maestro de la escuela de Ascanio.',
+  },
+];
+---
+
+<Base
+  title="Mago para eventos en Madrid | Alejandro Furnadjiev"
+  description="Mago profesional para eventos en Madrid: empresas, bodas y celebraciones privadas. Magia de cerca de élite, discípulo de Ascanio y Tamariz. Pide presupuesto."
+>
+  <Hero
+    eyebrow="Mago profesional · Madrid"
+    h1="Magia que convierte tu evento en algo <em>irrepetible</em>"
+    subtitle="Magia de cerca de élite para eventos de empresa, bodas y celebraciones privadas en Madrid."
+  />
+
+  <PressBar />
+
+  <section class="container">
+    <p class="eyebrow">Servicios</p>
+    <h2>¿Qué evento quieres hacer <em>inolvidable</em>?</h2>
+    <div class="grid">
+      {services.map((s) => (
+        <a class="card service" href={s.href}>
+          <h3>{s.title}</h3>
+          <p class="muted">{s.text}</p>
+          <span class="more">Ver más →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <p class="ornament" aria-hidden="true">◆</p>
+
+  <section class="container about-teaser">
+    <div>
+      <p class="eyebrow">La trayectoria</p>
+      <h2 style="margin-top: 0;">Una vida entera dedicada a la <em>magia</em></h2>
+      <p>
+        Alejandro Furnadjiev empezó en la magia a los 7 años y se formó junto a dos leyendas: Arturo de
+        Ascanio y Juan Tamariz. Hoy, además de actuar, forma a las nuevas generaciones como profesor de la
+        Gran Escuela de Magia Ana Tamariz.
+      </p>
+      <a href="/sobre-alejandro/">Conoce a Alejandro →</a>
+      <div class="stats">
+        <div><span class="n">7</span><span class="l">años tenía cuando la magia lo atrapó</span></div>
+        <div><span class="n">2004</span><span class="l">Gran Premio de Cartomagia · FLASOMA, Buenos Aires</span></div>
+        <div><span class="n">2006</span><span class="l">Memorial Ascanio · mejor mago del año</span></div>
+      </div>
+    </div>
+    <Placeholder ratio="4x5" label="Retrato en preparación" tilt />
+  </section>
+
+  <p class="ornament" aria-hidden="true">◆</p>
+
+  <section class="container">
+    <p class="eyebrow">Testimonios</p>
+    <h2 style="margin-top: 0;">Lo que dicen quienes lo han vivido</h2>
+    <p class="pendiente">[PENDIENTE: testimonios reales de clientes — nunca inventar]</p>
+  </section>
+
+  <CtaFinal />
+</Base>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  .service { text-decoration: none; color: var(--text); display: block; }
+  .service .more { color: var(--accent); font-weight: 600; }
+  .about-teaser {
+    display: grid;
+    gap: var(--s-6);
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 721px) {
+    .about-teaser { grid-template-columns: 3fr 2fr; }
+  }
+</style>

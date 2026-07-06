@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PressBar from '../components/PressBar.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { faqPage } from '../lib/schema';
+
+const faqs = [
+  {
+    q: '¿Qué tipo de celebraciones privadas cubre?',
+    a: 'Cumpleaños de adultos, aniversarios, reuniones familiares y fiestas privadas en casas, restaurantes o espacios alquilados, en Madrid.',
+  },
+  {
+    q: '¿Cuánto espacio hace falta?',
+    a: 'Muy poco: la magia de cerca se adapta al salón de una casa o al reservado de un restaurante. El aforo es flexible según el espacio y el tipo de magia.',
+  },
+  {
+    q: '¿La magia es para adultos?',
+    a: 'Sí. El repertorio está pensado para público adulto: cartomagia y magia de cerca del más alto nivel, con el ritmo y el humor de una celebración entre amigos.',
+  },
+];
+---
+
+<Base
+  title="Mago para fiestas privadas en Madrid | Furnadjiev"
+  description="Mago para cumpleaños de adultos, aniversarios y fiestas privadas en Madrid. Magia de cerca premiada, en tu casa o restaurante. Pide presupuesto."
+  schema={faqPage(faqs)}
+>
+  <Hero
+    eyebrow="Eventos privados · Madrid"
+    h1="Mago para fiestas <em>privadas</em> y cumpleaños de adultos"
+    subtitle="Un premio internacional de magia actuando a un metro de tus invitados, en tu salón o tu restaurante favorito, en Madrid."
+    visual="3x2"
+  />
+
+  <PressBar />
+
+  <section class="container">
+    <h2>La sorpresa que nadie espera en una fiesta</h2>
+    <p>
+      Hay regalos que se olvidan y momentos que no. Llevar a un mago formado con Ascanio y Tamariz a un
+      cumpleaños, un aniversario o una cena entre amigos convierte la celebración en la historia que todos
+      contarán después.
+    </p>
+    <p class="pendiente">[PENDIENTE: testimonios reales]</p>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaFinal text="Cuéntame qué celebras y hago el resto." />
+</Base>

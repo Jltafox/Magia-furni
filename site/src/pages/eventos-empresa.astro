@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PressBar from '../components/PressBar.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { faqPage } from '../lib/schema';
+
+const faqs = [
+  {
+    q: '¿Qué formato encaja mejor en un evento de empresa?',
+    a: 'Depende del momento: la magia de cerca funciona en cócteles y cenas, moviéndose entre grupos y mesas; el espectáculo de salón concentra a todo el público en un momento central. Se elige según el programa del evento y el espacio.',
+  },
+  {
+    q: '¿Para cuántas personas funciona?',
+    a: 'El aforo es flexible: depende de la sala y del tipo de magia. La magia de cerca se adapta a grupos repartidos por el espacio y el espectáculo de salón al aforo de la sala. Al pedir presupuesto se define el formato idóneo.',
+  },
+  {
+    q: '¿Necesita equipo técnico o escenario?',
+    a: 'La magia de cerca no necesita nada: ni escenario, ni sonido, ni montaje. Para espectáculos de salón, los requisitos se concretan según el espacio.',
+  },
+  {
+    q: '¿Se puede personalizar con nuestra marca o producto?',
+    a: 'Sí. Los efectos pueden integrar mensajes, valores o productos de la empresa para que la magia hable de vosotros. [PENDIENTE: confirmar alcance de personalización con Alejandro]',
+  },
+];
+---
+
+<Base
+  title="Mago para eventos de empresa en Madrid | Furnadjiev"
+  description="Magia de cerca y espectáculos para cenas de empresa, congresos y presentaciones en Madrid. Mago premiado internacionalmente. Pide presupuesto sin compromiso."
+  schema={faqPage(faqs)}
+>
+  <Hero
+    eyebrow="Eventos de empresa · Madrid"
+    h1="Mago para eventos de <em>empresa</em> en Madrid"
+    subtitle="Cenas de empresa, congresos, convenciones y presentaciones de producto: momentos de asombro que rompen el hielo y quedan en la memoria de tu equipo y tus clientes."
+    visual="3x2"
+  />
+
+  <PressBar />
+
+  <section class="container">
+    <h2>Formatos para tu evento corporativo</h2>
+    <div class="card">
+      <h3>Magia de cerca</h3>
+      <p class="muted">
+        Entre grupos y mesas, a centímetros de los asistentes, con cartas, monedas y objetos cotidianos.
+        Perfecta para cócteles, cenas y networking: genera conversación entre personas que no se conocían.
+        Sin escenario ni requisitos técnicos.
+      </p>
+    </div>
+    <div class="card" style="margin-top: var(--s-3);">
+      <h3>Espectáculo de salón</h3>
+      <p class="muted">
+        Un momento central para todo el público, participativo y elegante. Ideal como cierre de una cena o
+        dentro del programa de una convención. [PENDIENTE: duración exacta del formato]
+      </p>
+    </div>
+  </section>
+
+  <section class="container">
+    <h2>Por qué un mago premiado y no entretenimiento genérico</h2>
+    <p>
+      Alejandro Furnadjiev no es animación de eventos: es uno de los magos de cerca más premiados de
+      España — Gran Premio de Cartomagia en FLASOMA 2004, Memorial Ascanio 2006 y formado directamente con
+      Arturo de Ascanio y Juan Tamariz. Esa diferencia se nota en cada mesa.
+    </p>
+    <p class="pendiente">[PENDIENTE: logos de empresas cliente y testimonios reales]</p>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaFinal text="Cuéntame cómo es tu evento y te propongo el formato que mejor encaja." />
+</Base>

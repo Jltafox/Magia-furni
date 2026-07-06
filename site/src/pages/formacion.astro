@@ -1,0 +1,93 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PressBar from '../components/PressBar.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { faqPage } from '../lib/schema';
+
+// Regla de alcance: esta página NO menciona ni enlaza la escuela online Método Furni.
+const faqs = [
+  {
+    q: '¿Necesito nivel previo para empezar?',
+    a: 'No. Las clases se adaptan a tu punto de partida, desde cero absoluto hasta magos con experiencia que quieren pulir técnica y presentación.',
+  },
+  {
+    q: '¿Qué tipo de magia se aprende?',
+    a: 'Sobre todo cartomagia y magia de cerca, la especialidad de Alejandro. No solo la técnica: también el porqué de cada efecto — la construcción, el guion y la presentación.',
+  },
+  {
+    q: '¿Las clases son para adultos?',
+    a: 'Sí, la formación está pensada para adultos: aficionados que empiezan, entusiastas y magos en desarrollo.',
+  },
+  {
+    q: '¿Dónde y cómo son las clases?',
+    a: 'En Madrid, en formato individual o en grupos reducidos. [PENDIENTE: lugar, horarios y formatos exactos por confirmar]',
+  },
+];
+---
+
+<Base
+  title="Clases de magia en Madrid | Alejandro Furnadjiev"
+  description="Clases y talleres de magia para adultos en Madrid con Alejandro Furnadjiev: profesor de la Gran Escuela de Magia Ana Tamariz y premio internacional de cartomagia."
+  schema={faqPage(faqs)}
+>
+  <Hero
+    eyebrow="Formación · Madrid"
+    h1="Aprende magia con un <em>maestro</em> de la escuela de Ascanio"
+    subtitle="Clases y talleres de cartomagia y magia de cerca para adultos, impartidos por quien lleva más de veinte años enseñando a magos."
+  />
+
+  <PressBar />
+
+  <section class="container">
+    <p class="eyebrow">Por qué con Alejandro</p>
+    <h2 style="margin-top: 0;">Aprender del que <em>enseña</em> a los magos</h2>
+    <p>
+      Alejandro no es un mago que da clases: es profesor de la Gran Escuela de Magia Ana Tamariz desde
+      2002, formado en las reuniones de Arturo de Ascanio y discípulo de Juan Tamariz. Aprenderás la magia
+      como se transmite en la gran escuela madrileña: entendiendo por qué funciona cada efecto, no solo
+      cómo se hace.
+    </p>
+  </section>
+
+  <section class="container">
+    <p class="eyebrow">Formatos</p>
+    <h2 style="margin-top: 0;">Clases a tu <em>medida</em></h2>
+    <div class="formats">
+      <div class="card">
+        <h3>Clases particulares</h3>
+        <p class="muted">
+          Uno a uno, a tu ritmo y sobre tu repertorio. La vía más rápida para avanzar de verdad.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Grupos reducidos</h3>
+        <p class="muted">
+          Aprender en grupo pequeño: técnica, presentación y la experiencia de mostrar magia a otros.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Talleres puntuales</h3>
+        <p class="muted">
+          Sesiones monográficas de iniciación o de profundización en un tema. [PENDIENTE: confirmar
+          calendario]
+        </p>
+      </div>
+    </div>
+    <p class="pendiente" style="margin-top: var(--s-3);">
+      [PENDIENTE: lugar de las clases, horarios y tarifas — ver /precios/]
+    </p>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaFinal text="Cuéntame qué quieres aprender y te propongo por dónde empezar." />
+</Base>
+
+<style>
+  .formats {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+</style>

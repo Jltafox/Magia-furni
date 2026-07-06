@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import PressBar from '../components/PressBar.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { faqPage } from '../lib/schema';
+
+const faqs = [
+  {
+    q: '¿En qué momento de la boda encaja mejor la magia?',
+    a: 'Los momentos ideales son el cóctel, entre platos del banquete o la sobremesa: la magia de cerca circula entre los invitados sin interrumpir el ritmo de la celebración.',
+  },
+  {
+    q: '¿Interrumpe el banquete o molesta a los invitados?',
+    a: 'No. La magia de cerca es discreta por naturaleza: se actúa por grupos y mesas, adaptándose al ambiente. Los invitados la viven como un regalo, no como una interrupción.',
+  },
+  {
+    q: '¿Cuántos invitados puede atender?',
+    a: 'Es flexible: depende del espacio y del tipo de magia. Al pedir presupuesto se ajusta la duración y el formato al número de mesas e invitados.',
+  },
+  {
+    q: '¿Hace falta escenario o equipo de sonido?',
+    a: 'Para la magia de cerca, nada: solo los invitados. Si se quiere un momento central tipo espectáculo, los requisitos se concretan según la finca o el salón.',
+  },
+];
+---
+
+<Base
+  title="Mago para bodas en Madrid | Alejandro Furnadjiev"
+  description="Magia de cerca para bodas en Madrid: asombro entre invitados durante el cóctel y el banquete. Mago premiado internacionalmente. Pide presupuesto."
+  schema={faqPage(faqs)}
+>
+  <Hero
+    eyebrow="Bodas · Madrid"
+    h1="Mago para <em>bodas</em> en Madrid"
+    subtitle="El recuerdo del que hablarán vuestros invitados: magia de cerca elegante durante el cóctel, el banquete o la sobremesa."
+    visual="3x2"
+  />
+
+  <PressBar />
+
+  <section class="container">
+    <h2>Magia que se vive de cerca, mesa a mesa</h2>
+    <p>
+      Mientras disfrutáis de vuestra boda, Alejandro recorre los grupos y las mesas creando momentos de
+      asombro a centímetros de los invitados. Sin escenario, sin interrupciones: solo la sorpresa de una
+      cartomagia premiada en los congresos más exigentes del mundo.
+    </p>
+    <p class="pendiente">[PENDIENTE: testimonios reales de novios]</p>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaFinal text="Contadme cómo será vuestra boda y os propongo el momento perfecto para la magia." />
+</Base>

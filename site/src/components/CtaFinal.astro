@@ -1,0 +1,17 @@
+---
+interface Props {
+  text?: string;
+}
+const { text = '¿Hablamos de tu evento? Cuéntame qué tienes en mente y te propongo el formato que mejor encaja.' } = Astro.props;
+---
+
+<section class="container cta-final">
+  <h2>{text}</h2>
+  <a class="btn btn-primary" href="/contacto/">Pide presupuesto</a>
+</section>
+
+<style>
+  .cta-final { text-align: center; }
+  .cta-final h2 { max-width: 30ch; margin-inline: auto; }
+  .btn { margin-top: var(--s-3); }
+</style>

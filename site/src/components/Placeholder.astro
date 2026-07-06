@@ -1,0 +1,54 @@
+---
+// Placeholder "dorso de naipe" hasta tener fotos reales — DESIGN.md
+interface Props {
+  ratio?: '3x2' | '4x5';
+  label?: string;
+  tilt?: boolean;
+}
+const { ratio = '3x2', label = 'Foto en preparación', tilt = false } = Astro.props;
+---
+
+<figure class:list={['card-back', `r-${ratio}`, { tilt }]} role="img" aria-label={label}>
+  <span class="pip" aria-hidden="true">♠</span>
+  <figcaption>{label}</figcaption>
+</figure>
+
+<style>
+  .card-back {
+    margin: 0;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--s-2);
+    position: relative;
+    border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+    border-radius: var(--radius-card);
+    background:
+      repeating-linear-gradient(45deg, transparent 0 12px, color-mix(in srgb, var(--accent) 5%, transparent) 12px 13px),
+      repeating-linear-gradient(-45deg, transparent 0 12px, color-mix(in srgb, var(--accent) 5%, transparent) 12px 13px),
+      var(--bg-raised);
+  }
+  .card-back::after {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+    border-radius: calc(var(--radius-card) - 6px);
+    pointer-events: none;
+  }
+  .r-3x2 { aspect-ratio: 3 / 2; }
+  .r-4x5 { aspect-ratio: 4 / 5; }
+  .tilt { transform: rotate(2deg); }
+  .pip {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: color-mix(in srgb, var(--accent) 65%, transparent);
+    line-height: 1;
+  }
+  figcaption {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+</style>

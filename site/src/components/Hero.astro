@@ -1,0 +1,51 @@
+---
+import Placeholder from './Placeholder.astro';
+
+interface Props {
+  eyebrow: string;
+  /** Admite <em> para la palabra en cursiva editorial */
+  h1: string;
+  subtitle: string;
+  /** Ratio del placeholder visual; 'none' para hero sin pieza visual */
+  visual?: '3x2' | '4x5' | 'none';
+}
+const { eyebrow, h1, subtitle, visual = '4x5' } = Astro.props;
+---
+
+<section class="hero">
+  <div class:list={['container', 'hero-grid', { solo: visual === 'none' }]}>
+    <div class="hero-copy">
+      <p class="eyebrow">{eyebrow}</p>
+      <h1 set:html={h1} />
+      <p class="subtitle">{subtitle}</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="/contacto/">Pide presupuesto</a>
+        <!-- [PENDIENTE: enlace wa.me cuando haya número de WhatsApp] -->
+        <a class="btn btn-secondary" href="/contacto/">WhatsApp</a>
+      </div>
+    </div>
+    {visual !== 'none' && (
+      <div class="hero-visual">
+        <Placeholder ratio={visual} tilt />
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: var(--s-6); }
+  .hero-grid {
+    display: grid;
+    gap: var(--s-6);
+    align-items: center;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 721px) {
+    .hero-grid:not(.solo) { grid-template-columns: 7fr 4fr; }
+    .hero { padding-top: var(--s-7); }
+  }
+  .hero-visual { padding: var(--s-3); }
+  h1 { max-width: 18ch; }
+  .subtitle { font-size: 1.2rem; color: var(--muted); max-width: 46ch; }
+  .ctas { display: flex; flex-wrap: wrap; gap: var(--s-3); margin-top: var(--s-4); }
+</style>

@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Faq from '../components/Faq.astro';
+import CtaFinal from '../components/CtaFinal.astro';
+import { faqPage } from '../lib/schema';
+
+// [PENDIENTE: tarifas reales del cliente — decidido publicarlas 2026-07-06]
+const rates = [
+  { format: 'Magia de cerca · evento privado o boda', price: '[PENDIENTE]' },
+  { format: 'Magia de cerca · evento de empresa', price: '[PENDIENTE]' },
+  { format: 'Espectáculo de salón', price: '[PENDIENTE]' },
+  { format: 'Clases de magia · particulares y grupos', price: '[PENDIENTE]' },
+];
+
+const faqs = [
+  {
+    q: '¿Qué factores afectan al precio?',
+    a: 'El formato (magia de cerca o espectáculo de salón), la duración, el número de invitados, la personalización del espectáculo y el desplazamiento dentro de la Comunidad de Madrid.',
+  },
+  {
+    q: '¿El presupuesto compromete a algo?',
+    a: 'No. Cuéntanos tu evento y recibirás una propuesta cerrada y sin compromiso, con todo incluido.',
+  },
+];
+---
+
+<Base
+  title="Cuánto cuesta un mago en Madrid | Precios y tarifas"
+  description="Precios orientativos de contratar a Alejandro Furnadjiev, mago profesional en Madrid: magia de cerca y espectáculos para empresas, bodas y fiestas privadas."
+  schema={faqPage(faqs)}
+>
+  <Hero
+    eyebrow="Precios · Madrid"
+    h1="Precios de un mago <em>profesional</em> en Madrid"
+    subtitle="Tarifas orientativas y claras. Cada evento es distinto: el presupuesto final se ajusta a tu formato, duración y espacio."
+    visual="none"
+  />
+
+  <section class="container">
+    <h2>Tarifas orientativas</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Formato</th><th>Desde</th></tr>
+        </thead>
+        <tbody>
+          {rates.map((r) => (
+            <tr><td>{r.format}</td><td>{r.price}</td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="pendiente" style="margin-top: var(--s-3);">
+      [PENDIENTE: importes reales — el cliente confirmó que se publicarán tarifas cuando estén definidas]
+    </p>
+    <p class="muted">
+      Todos los formatos incluyen la preparación previa y el material profesional. La magia de cerca no
+      requiere escenario ni equipo técnico.
+    </p>
+  </section>
+
+  <Faq items={faqs} />
+  <CtaFinal text="Pide tu presupuesto cerrado: sin sorpresas y sin compromiso." />
+</Base>
+
+<style>
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: var(--s-3); border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; }
+</style>
