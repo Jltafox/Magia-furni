@@ -12,6 +12,10 @@ interface Props {
 }
 const { title, description, schema } = Astro.props;
 
+// Pre-lanzamiento: noindex salvo PUBLIC_ALLOW_INDEXING=true (variable de entorno en Vercel).
+// Al lanzar: fijar la variable y redeploy — no hay que tocar código.
+const allowIndexing = import.meta.env.PUBLIC_ALLOW_INDEXING === 'true';
+
 const nav = [
   { href: '/eventos-empresa/', label: 'Empresas' },
   { href: '/bodas/', label: 'Bodas' },
@@ -55,6 +59,7 @@ const baseSchema = {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    {!allowIndexing && <meta name="robots" content="noindex, nofollow" />}
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

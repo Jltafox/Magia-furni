@@ -14,7 +14,7 @@
 |------|-------|
 | Framework | **Astro** (decidido; scaffolding pendiente) |
 | Estilos | CSS propio con tokens de `DESIGN.md` (sin framework CSS salvo decisión justificada) |
-| Deploy | Vercel o Netlify (pendiente de decidir) |
+| Deploy | **Vercel** (proyecto conectado al repo; Root Directory `site/`). Pre-producción con noindex: ver `PUBLIC_ALLOW_INDEXING` en el layout |
 | Dominio | Pendiente (el cliente tiene magiametodofurni.com pero es de la escuela, **no** de esta web) |
 
 Comandos (cuando exista el scaffolding):

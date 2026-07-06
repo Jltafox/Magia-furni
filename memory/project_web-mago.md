@@ -37,6 +37,8 @@ Fuente única de verdad sobre decisiones y estado. Leer al iniciar cada sesión.
 
 ## Bloqueos / pendientes
 
+- **Checklist de lanzamiento**: fijar `PUBLIC_ALLOW_INDEXING=true` en Vercel y redeploy — hasta entonces toda la web lleva `noindex,nofollow` y `robots.txt` con `Disallow: /` (decisión 2026-07-06: versión no indexable mientras esté en pre-producción; contraseña descartada por ahora, requiere plan de pago de Vercel).
+
 - *(Resuelto 2026-07-06: el proyecto vive ya en su repositorio propio `Jltafox/Magia-furni`; la copia en la rama del repo de la clase queda como histórico.)*
 
 - Datos del cliente por confirmar (ver checklist en `user_alejandro-furnadjiev.md`).
